@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Aldama_02_dongwoo {
+public class aldama_02_dongwoo {
 	public static int arr[][] = null;
 	public static int n = 0;
 

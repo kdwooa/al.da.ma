@@ -3,7 +3,7 @@ package com.sds;
 import java.util.Scanner;
 
 
-public class Main_Bobin{
+public class aldama_02_bobin {
 	   public static void main(String args[]){
 		   Scanner sc = new Scanner(System.in);
 		   int C = sc.nextInt();

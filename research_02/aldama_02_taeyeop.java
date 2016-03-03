@@ -2,7 +2,7 @@ package com.sds;
 
 import java.util.Scanner;
 
-//public class TeaYeop {
+//public class aldama_02_taeyeop {
 //	public static int[][] triangleArray = null;
 //	public static int N;
 //
@@ -40,7 +40,7 @@ import java.util.Scanner;
 //	}
 //}
 
-public class TeaYeop {
+public class aldama_02_taeyeop {
 	public static int[] frontArray = null;
 	public static int[] tempArray = null;
 	public static int[] resultArray = null;
