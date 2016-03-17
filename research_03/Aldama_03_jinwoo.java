@@ -11,7 +11,7 @@ public class Aldama_03_jinwoo {
 	public static void main(String[] args) throws Exception {
 
 //		Scanner sc = new Scanner(System.in);
-		Scanner sc = new Scanner(new File(System.getProperty("user.dir")+"/aldama_input.txt"));
+		Scanner sc = new Scanner(new File(System.getProperty("user.dir")+"/sampleInput/aldama_03_input.txt"));
 		T = sc.nextInt();
 		while (T-- > 0) {
 			N = sc.nextInt();
@@ -29,9 +29,7 @@ public class Aldama_03_jinwoo {
 
 	static boolean goal(int y, int x){
 		boolean result = false;
-		if(x < 0 || x >= N || y < 0 || y >= N){
-			return false;
-		}else if(check[y][x]){
+		if(check[y][x]){
 			return false;
 		}else if(table[y][x] == 0){
 			return true;
@@ -39,9 +37,7 @@ public class Aldama_03_jinwoo {
 			int temp = table[y][x];
 			check[y][x] = true;
 			result = y+temp < N ? result||goal(y+temp, x) : result;
-			result = y-temp < 0 ? result||goal(y-temp, x) : result;
 			result = x+temp < N ? result||goal(y, x+temp) : result;
-			result = x-temp < 0 ? result||goal(y, x-temp) : result;
 			return result;
 		}
 	}
