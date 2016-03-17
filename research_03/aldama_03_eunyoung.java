@@ -58,7 +58,7 @@ public class aldama_03_eunyoung {
 	 *  
 	 * @param x x좌표
 	 * @param y y좌표
-	 * @return boolean 성공여부
+	 * @return int 성공여부 (0:실패|1:성공)
 	 */
 	static int search(int x, int y) {
 		
