@@ -11,3 +11,6 @@
 
 <b>3주차: 외발뛰기 (김은영)</b>
 <br>https://algospot.com/judge/problem/read/JUMPGAME
+
+<b>4주차: 용감한 오리 (정보빈)</b>
+<br>https://algospot.com/judge/problem/read/BRAVEDUCK
