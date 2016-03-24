@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 public class aldama_04_eunyoung {
 	
-	public static int arr[][] = null;
-	public static int cache[][] = null;
 	public static int j = 0;
 	public static Point start;
 	public static Point end;
@@ -18,16 +16,42 @@ public class aldama_04_eunyoung {
 		while (cases-- > 0) {
 			j = sc.nextInt();
 			
-			// ì‹œì‘ì , ëì , ëŒë“¤ì˜ ì¢Œí‘œë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+			// ½ÃÀÛÁ¡, ³¡Á¡, µ¹µéÀÇ ÁÂÇ¥¸¦ ÀÔ·Â¹Ş´Â´Ù.
 			start = new Point(sc.nextInt(), sc.nextInt());
 			end = new Point(sc.nextInt(), sc.nextInt());
 			ArrayList<Point> nexts = makeArr(sc);
 			nexts.add(end);
 			
-			// ë„“ì´ìš°ì„  íƒìƒ‰ ë°©ì‹ìœ¼ë¡œ ë‹µì„ êµ¬í•œë‹¤.
-			// TODO : í˜„ì¬ RTE(non zero code) ë°œìƒì¤‘...ì›ì¸ ë¶ˆëª…ã… ã… 
+			// ³ĞÀÌ¿ì¼± Å½»ö ¹æ½ÄÀ¸·Î ´äÀ» ±¸ÇÑ´Ù.
+			boolean success = false;
+			
+			// 0. Å¥¿¡ ½ÃÀÛÁöÁ¡À» ³Ö´Â´Ù. (Ãâ¹ß)
 			Queue<Point> queue = new LinkedList<Point>();
-			boolean success = search(start, nexts, queue);
+			queue.add(start);
+			
+			// 1. Å¥¿¡ µ¹ÀÌ ³²¾ÆÀÖÀ» ¶§±îÁö Å½»öÀ» °è¼ÓÇÑ´Ù.
+			while (!queue.isEmpty()) {
+				
+				// 2. Å¥¿¡¼­ µ¹À» ÇÏ³ª¾¿ »©¼­ Å½»öÇÑ´Ù.
+				Point now = queue.remove();
+				nexts.remove(now);
+				
+				// 3. ¸¸¾à ´ÙÀ½ µ¹µé Áß Á¡ÇÁÇØ¼­ °Ç³Ê°¥¼ö ÀÖ´Â µ¹ÀÌ ÀÖÀ¸¸é Å¥¿¡ ³Ö´Â´Ù.
+				for (Point next : nexts) {
+					double d = dist(now.x, now.y, next.x, next.y);
+					if (d <= j) {
+						queue.add(next);
+					}
+				}
+				
+				// 4. ¸¸¾à µµÂøÁöÁ¡ÀÌ Å¥¿¡ ÀÖ´Ù¸é ±×¸¸µĞ´Ù. (µµÂø)
+				if (queue.contains(end)) {
+					success = true;
+					break;
+				}
+			}
+			
+			// Ãâ·Â
 			if (success) System.out.println("YES");
 			else		 System.out.println("NO");
 		
@@ -47,30 +71,6 @@ public class aldama_04_eunyoung {
 	
 	private static double dist(int x1, int y1, int x2, int y2) {
 		return Point.distance(x1, y1, x2, y2);
-	}
-
-	private static boolean search(Point start, ArrayList<Point> nexts, Queue<Point> queue) {
-		
-		// ì‹œì‘ì§€ì ì—ì„œ ì´ë™ê°€ëŠ¥í•œ ì§€ì ë“¤ì„ íƒìƒ‰í•œë‹¤.
-		// ë§Œì•½ jump ê°€ëŠ¥í•œ ì ì¼ ê²½ìš° íì— ë„£ëŠ”ë‹¤.
-		for (Point next : nexts) {
-			double d = dist(start.x, start.y, next.x, next.y);
-			if (d <= j) queue.add(next);
-		}
-		
-		// ë§Œì•½ íì— ë„ì°©ì§€ì ì´ ë“¤ì–´ì™”ë‹¤ë©´ -> ì„±ê³µ
-		if (queue.contains(end)) return true;
-		
-		// íê°€ ë¹„ì›Œì¡Œë‹¤ë©´(íƒìƒ‰ì´ ëë‚¬ë‹¤ë©´) -> ì‹¤íŒ¨
-		if (queue.isEmpty()) return false;
-		
-		// íì—ì„œ ë‹¤ìŒì§€ì ì„ ë¹¼ë‚¸ë‹¤.
-		Point next = queue.remove();
-		nexts.remove(next);
-		
-		// íƒìƒ‰ì„ ê³„ì†í•œë‹¤.
-		return search(next, nexts, queue);
-		
 	}
 
 }
